@@ -13,19 +13,19 @@ import java.util.regex.Pattern;
 public class ResponseBodyUrlRewriteTransformer extends ResponseTransformer {
 
   final int wiremockPort;
-  final String wiremockHost;
+  final String wiremockBindAddress;
   final private List<String> urlsToReplace;
 
-  public ResponseBodyUrlRewriteTransformer(String wiremockHost, int wiremockPort, List<String> urlsToReplace) {
+  public ResponseBodyUrlRewriteTransformer(String wiremockBindAddress, int wiremockPort, List<String> urlsToReplace) {
     this.urlsToReplace = urlsToReplace;
-    this.wiremockHost = wiremockHost;
+    this.wiremockBindAddress = wiremockBindAddress;
     this.wiremockPort = wiremockPort;
   }
 
   private String replaceUrlsInBody(String bodyText) {
     for (String urlToReplace : urlsToReplace) {
       bodyText = bodyText.replaceAll(Pattern.quote(urlToReplace),
-          "http://" + wiremockHost + ":" + wiremockPort);
+          "http://" + wiremockBindAddress + ":" + wiremockPort);
     }
     return bodyText;
   }
