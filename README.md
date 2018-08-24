@@ -17,3 +17,21 @@ Example:
 ```
 java -cp "build/libs/*" org.wiremock.example.WireMockServer localhost 8080 http://192.168.5.15 http://192.168.9.15 
 ```
+
+Then:
+```
+POST
+http://localhost:8080/__admin/recordings/start
+{
+  "targetBaseUrl": "http://192.168.5.15"
+}
+```
+
+to start recording. Then
+
+```
+POST
+http://localhost:8080/__admin/recordings/stop
+```
+
+to stop recording.
