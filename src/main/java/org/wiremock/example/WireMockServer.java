@@ -34,6 +34,8 @@ public class WireMockServer {
             .fileSource(new SingleRootFileSource(fileRoot.getCanonicalPath()))
             .extensions(responseBodyUrlRewriteTransformer)
             .bindAddress(wiremockBindAddress)
+            .asynchronousResponseEnabled(true)
+            .preserveHostHeader(true)
             .port(wiremockPort));
 
     wireMockServer.start();
